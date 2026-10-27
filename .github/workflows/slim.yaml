@@ -1,0 +1,46 @@
+name: Sync Agent Slim Mirror
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  sync-slim:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Remove Bulky Test Dumps & Non-Source Binaries
+        run: |
+          # Remove test frame captures and dumps (~330MB)
+          rm -rf apps/panvk-launcher/tests/results
+          
+          # Remove binary image dumps and prebuilt DLLs/APKs
+          find . -type f \( \
+            -name "*.png" -o \
+            -name "*.ppm" -o \
+            -name "*.dll" -o \
+            -name "*.apk" -o \
+            -name "*.raw" -o \
+            -name "*.exe" \
+          \) -delete
+
+      - name: Push to Slim Repository
+        env:
+          TARGET_REPO: "github.com/${{ github.repository_owner }}/panvk-kbase-android-slim.git"
+          PAT: ${{ secrets.SLIM_REPO_PAT }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Initialize clean repository with only source files
+          rm -rf .git
+          git init
+          git branch -M main
+          git add -A
+          git commit -m "sync: clean source mirror for AI agents ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))"
+          git push -f https://${PAT}@${TARGET_REPO} main

@@ -1,0 +1,33 @@
+{
+  "packageVersion": "26.3.0-devel",
+  "note": "Pinned metadata for the two drivers bundled in PanProbe: rc5 = the current Mesa PanVK build, rc4 = the previous release (PanVK-kbase RC4, kept for comparison). The Gradle build regenerates sha256/size/buildId/driverInfo from the actual .so files into the APK asset bundled-driver.json.",
+  "drivers": {
+    "rc4": {
+      "id": "panvk-kbase-0.1.0-rc4",
+      "name": "PanVK Kbase RC4 (previous release)",
+      "packageVersion": "0.1.0-rc4",
+      "displayVersion": "RC4 (release build, Mesa 5a07217f)",
+      "soName": "libvulkan_panfrost_rc4.so",
+      "buildId": "6654fada10d55c914e99d3f28c60f22687158656",
+      "driverInfo": "PanVK-kbase RC4 (Mesa 26.3.0-devel (git-5a07217f03))",
+      "release": {
+        "sha256": "977c0c4c0803b9940c453d691f50f14c9f8f732fe945d93bdde637880befd791",
+        "size": 23257872
+      }
+    },
+    "rc5": {
+      "id": "mesa-panvk-26.3.0-devel-git-9dde9e7a18",
+      "name": "Mesa PanVK",
+      "packageVersion": "26.3.0-devel",
+      "displayVersion": "26.3.0-devel (git-9dde9e7a18)",
+      "build": "115: series csf-v11 018-233 + jm-v9 + jm-v7 + jm-v7-wip 0006-0131 (prepare-rc5-tree.sh defaults; p115-rel 9dde9e7a18)",
+      "soName": "libvulkan_panfrost_rc5.so",
+      "buildId": "b3e07620dbe59378f7b79a72d6bd79b5c9447e01",
+      "driverInfo": "Mesa 26.3.0-devel (git-9dde9e7a18)",
+      "release": {
+        "sha256": "73709644d8f0178369da2fbb95573730b47920f78dab0b9421d4417781488394",
+        "size": 29909088
+      }
+    }
+  }
+}

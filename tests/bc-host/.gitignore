@@ -1,0 +1,10 @@
+*.o
+etc2_new.h
+etc2_197.h
+test_etc2
+bench_etc2
+test_astc
+libastcenc.a
+astcenc-obj/
+etc2_200.h
+gen_eac_lut
